@@ -16,3 +16,18 @@ It's a simple demo of a
 	- in the input field, try any string, then also "SELECT *"
 
 
+## Interesting points
+
+### Backend
+I'm using the Gorilla package.
+One must upgrade the protocol from http to websockets.
+See the Upgrade.
+
+
+### Frontend
+In the 3 main parts of the page it shows that
+- it calls a default http-based page
+- it sends an automated message (open dev/logs in the browser)
+- it sends and echos from the server a string and the status
+- it retuns some data if you type "SELECT *"
+
