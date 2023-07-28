@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Websocketor</title>
+  </head>
+  <body>
+    <center>
+    <h2>Websocketor Page</h2>
+
+    Standard http call
+    <br><br>
+    <button name="b1" onclick="window.location.href='http://localhost:8080/'">Click for http</button>
+    
+     
+    <hr>
+    <!-- ____________________________________________________________________________________________ -->
+    <br><br>
+
+    Remember to open the <i>Developer tools</i> pannel to see the logs
+    <br><br>
+
+    <input type="button" value="Websocket initialization & auto-message" onclick="wsInit();">
+
+    <script>
+    function wsInit(){
+        let socket = new WebSocket("ws://127.0.0.1:8080/ws");
+        console.log("-->Attempting Connection...");
+
+        socket.onopen = () => {
+            console.log("Successfully Connected");
+            console.log("Sending message to backend; check it out on the server-side...")
+            socket.send("Hi from the web-browser client!")
+        };
+        
+        socket.onclose = event => {
+            console.log("Socket Closed Connection: ", event);
+            socket.send("Client Closed!")
+        };
+
+        socket.onerror = error => {
+            console.log("Socket Error: ", error);
+        };
+    }
+    </script>
+
+    <hr>
+    <!-- ____________________________________________________________________________________________ -->
+    <br><br>
+
+    <b>Interactive message</b>
+    <br><br>
+    
+    Insert your message for the backend <br>
+    and watch the reply from the server below<br><br>
+    <input type="text" id="myMsg" placeholder="Input your message">
+    <br><br>
+    <input type="button" value="Send" onclick="wsInitSend()" >
+
+    <br><br><br>
+    <hr>
+    <pre id="output"></pre>
+
+    <script>
+        function wsInitSend(){
+
+            // init ws comm
+            let socket = new WebSocket("ws://127.0.0.1:8080/ws");
+            console.log("-->Attempting Connection..."); 
+
+            socket.onopen = () => {
+                console.log("Successfully Connected");
+                output.innerHTML += "WS Status: Connected\n";
+
+                // grab the data from the field & send it
+                let myMsg = document.getElementById("myMsg").value;
+                socket.send(myMsg);
+            };
+
+            socket.onmessage = function (e) {
+                output.innerHTML += "\nServer: " + e.data + "\n";
+            };
+            
+            socket.onclose = event => {
+                console.log("Socket Closed Connection: ", event);
+                socket.send("Client Closed!")
+            };
+    
+            socket.onerror = error => {
+                console.log("Socket Error: ", error);
+                output.innerHTML += "\nError in WS communication: " + error.data + "\n";
+            };
+        }
+        </script>
+
+    </center>
+  </body>
+</html>
