@@ -19,15 +19,15 @@ It's a simple demo of a
 ## Interesting points
 
 ### Backend
-I'm using the Gorilla package.
-One must upgrade the protocol from http to websockets.
-See the Upgrade.
+I'm using the Gorilla package.<br>
+One must upgrade the protocol from http to websockets.<br>
+See the Upgrader.<br>
 
 
 ### Frontend
 In the 3 main parts of the page it shows that
 - it calls a default http-based page
-- it sends an automated message (open dev/logs in the browser)
+- it sends an automated message (open developer/console in the browser)
 - it sends and echos from the server a string and the status
 - it retuns some data if you type "SELECT *"
 
