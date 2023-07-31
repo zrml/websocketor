@@ -2,7 +2,7 @@
 
 ## What is it?
 It's a simple demo of a 
-- server side websocket implementation in Go and
+- server side websocket implemented in Go and
 - the client side web-page with the relevant JS
 
 ## How to run it
@@ -10,10 +10,10 @@ It's a simple demo of a
 	- go run main.go
 2) make sure the nodejs webgateway _live-server_, is installed 
 	- npm install -g live-server
-	- it will throw you into a webpage with all file listed in the project
+	- it will throw you into a webpage with all files listed in the project
 	- select/click "page-with-ws-call.html"
 3) run the exercises in the web page
-	- in the input field, try any string, then also "SELECT *"
+	- in the input field, try any string and also "SELECT *"
 
 
 ## Interesting points
